@@ -8,8 +8,8 @@ describe('CounterComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CounterComponent]
-    });
+    imports: [CounterComponent]
+});
     fixture = TestBed.createComponent(CounterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -7,9 +7,9 @@ import { TodoComponent } from './view/todo/todo.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, TodoComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, TodoComponent],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
