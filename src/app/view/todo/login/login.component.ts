@@ -35,8 +35,11 @@ export class LoginComponent {
     });
   }
 
-  doLogin(form: FormGroup) {
-    if (form.valid) this.router.navigate(['./todo/welcome']);
+  doLogin(form: FormGroup<LoginForm>) {
+    if (form.valid) {
+      const user = form.value.user;
+      this.router.navigate([`./todo/welcome/${user}`]);
+    }
   }
 }
 

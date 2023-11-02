@@ -9,7 +9,7 @@ export const todo_routes: Routes = [
     component: TodoComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'welcome', component: WelcomeComponent },
+      { path: 'welcome/:user', component: WelcomeComponent },
       { path: '', redirectTo: 'login', pathMatch: 'full' },
     ],
   },
