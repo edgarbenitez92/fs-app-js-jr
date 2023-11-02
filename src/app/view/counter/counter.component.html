@@ -5,6 +5,9 @@
 
   <div class="actions-container">
     <span class="result-counter">0</span>
-    <app-number-to-counter style="width: 50%;"></app-number-to-counter>
+
+    <ng-container *ngFor="let number of numbersToCounter">
+      <app-number-to-counter [numberToCounter]="number" style="width: 200px;"></app-number-to-counter>
+    </ng-container>
   </div>
 </div>

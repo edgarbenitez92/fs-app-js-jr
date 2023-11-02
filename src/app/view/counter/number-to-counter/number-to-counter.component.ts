@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -10,11 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./number-to-counter.component.scss'],
 })
 export class NumberToCounterComponent {
+  @Input() numberToCounter: number = 0;
+
   incrementCounter(): void {
-    console.log('incremented!');
+    console.log('incremented by: ', this.numberToCounter);
   }
 
   decrementCounter(): void {
-    console.log('decremented!');
+    console.log('decremented by: ', this.numberToCounter);
   }
 }
