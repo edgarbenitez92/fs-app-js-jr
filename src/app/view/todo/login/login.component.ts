@@ -4,12 +4,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,18 +25,18 @@ import {
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
   formLogin: FormGroup<LoginForm>;
 
   constructor() {
-    this.formLogin = this.formBuilder.nonNullable.group<LoginForm>({
-      user: new FormControl(),
-      password: new FormControl(),
+    this.formLogin = new FormGroup<LoginForm>({
+      user: new FormControl('', { validators: [Validators.required] }),
+      password: new FormControl(null, { validators: [Validators.required] }),
     });
   }
 
   doLogin(form: FormGroup) {
-    console.log('formLogin: ', form.value);
+    if (form.valid) this.router.navigate(['./todo/welcome']);
   }
 }
 
