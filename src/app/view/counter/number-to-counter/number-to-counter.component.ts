@@ -16,13 +16,11 @@ export class NumberToCounterComponent {
   constructor(private counterService: CounterService) {}
 
   incrementCounter(incrementBy: number): void {
-    console.log('incremented by: ', incrementBy);
     const currentCounter = this.counterService.counter.value;
     this.counterService.counter.next(currentCounter + incrementBy);
   }
 
   decrementCounter(decrementBy: number): void {
-    console.log('decremented by: ', decrementBy);
     const currentCounter = this.counterService.counter.value;
     this.counterService.counter.next(currentCounter - decrementBy);
   }

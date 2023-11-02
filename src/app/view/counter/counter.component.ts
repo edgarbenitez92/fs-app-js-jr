@@ -22,7 +22,6 @@ export class CounterComponent {
 
   onChangeSubsCounter() {
     this.counterService.counter.subscribe((value) => {
-      console.log('0: ', value);
       this.counter = value;
     });
   }
