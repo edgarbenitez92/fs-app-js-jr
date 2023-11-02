@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { CounterService } from 'src/app/services/counter.service';
@@ -12,8 +12,7 @@ import { CounterService } from 'src/app/services/counter.service';
 })
 export class NumberToCounterComponent {
   @Input() numberToCounter: number = 0;
-
-  constructor(private counterService: CounterService) {}
+  private counterService = inject(CounterService)
 
   incrementCounter(incrementBy: number): void {
     const currentCounter = this.counterService.counter.value;

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NumberToCounterComponent } from './number-to-counter/number-to-counter.component';
 import { NgFor } from '@angular/common';
 import { CounterService } from 'src/app/services/counter.service';
@@ -13,8 +13,8 @@ import { CounterService } from 'src/app/services/counter.service';
 export class CounterComponent {
   numbersToCounter: number[] = [1, 3, 5];
   counter!: number;
+  private counterService = inject(CounterService)
 
-  constructor(private counterService: CounterService) {}
 
   ngOnInit(): void {
     this.onChangeSubsCounter();
