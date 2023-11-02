@@ -3,21 +3,13 @@
   justify-content: space-around;
   align-items: center;
 
-  .btn-increment {
+  .btn-increment, .btn-decrement {
     margin-top: 10px;
     font-size: 20px;
     font-weight: bold;
     padding: 5px;
     width: 60px;
     height: 60px;
-  }
-
-  .btn-decrement {
-    margin-top: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 5px;
-    width: 60px;
-    height: 60px;
+    border: 2px solid black;
   }
 }
