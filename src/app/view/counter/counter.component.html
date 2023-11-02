@@ -4,10 +4,12 @@
   </h2>
 
   <div class="actions-container">
+    <ng-container *ngFor="let number of numbersToCounter">
+      <app-number-to-counter [numberToCounter]="number" class="number-container"></app-number-to-counter>
+    </ng-container>
+
     <span class="result-counter">{{ counter }}</span>
 
-    <ng-container *ngFor="let number of numbersToCounter">
-      <app-number-to-counter [numberToCounter]="number" style="width: 200px;"></app-number-to-counter>
-    </ng-container>
+    <button mat-raised-button class="btn-reset"  (click)="resetCounter()">RESET</button>
   </div>
 </div>
