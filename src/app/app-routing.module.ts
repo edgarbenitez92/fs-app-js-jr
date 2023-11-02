@@ -4,8 +4,8 @@ import { TodoComponent } from './view/todo/todo.component';
 import { CounterComponent } from './view/counter/counter.component';
 
 const routes: Routes = [
-  // { path: '', component: TodoComponent },
-  { path: '', component: CounterComponent },
+  { path: '', component: TodoComponent },
+  // { path: '', component: CounterComponent },
 ];
 
 @NgModule({
