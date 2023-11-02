@@ -1,5 +1,21 @@
 <div class="login-container">
-    <h2 class="title-app">
-        LOGIN
-    </h2>
+  <div class="title-app">
+    <h2>LOGIN TODO APP</h2>
+  </div>
+
+  <form [formGroup]="formLogin" (ngSubmit)="doLogin(formLogin)" class="auth-container">
+    <mat-form-field color="warn">
+      <mat-label>User Name</mat-label>
+      <input matInput formControlName="user" type="text" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field color="warn">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password" autocomplete="off">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="btn-login" type="submit">
+      LOGIN
+    </button>
+  </form>
 </div>
