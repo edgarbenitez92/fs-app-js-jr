@@ -1,10 +1,10 @@
 <div class="counter-container">
   <h2 class="title-app">
-    My COUNTER fullstack app
+    My COUNTER app
   </h2>
 
   <div class="actions-container">
-    <span class="result-counter">0</span>
+    <span class="result-counter">{{ counter }}</span>
 
     <ng-container *ngFor="let number of numbersToCounter">
       <app-number-to-counter [numberToCounter]="number" style="width: 200px;"></app-number-to-counter>

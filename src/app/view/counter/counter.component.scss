@@ -1,7 +1,10 @@
 .counter-container {
   text-align: center;
 
-  .title-app {}
+  .title-app {
+    color: blue;
+    font-weight: bold;
+  }
 
   .actions-container {
     margin-top: 30px;

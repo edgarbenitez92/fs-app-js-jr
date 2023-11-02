@@ -1,9 +1,9 @@
 <div class="buttons-container">
-  <button mat-fab color="accent" class="btn-increment" (click)="incrementCounter()">
+  <button mat-fab color="accent" class="btn-increment" (click)="incrementCounter(numberToCounter)">
     + {{ numberToCounter }}
   </button>
 
-  <button mat-fab color="warn" class="btn-decrement" (click)="decrementCounter()">
+  <button mat-fab color="warn" class="btn-decrement" (click)="decrementCounter(numberToCounter)">
     - {{ numberToCounter }}
   </button>
 </div>

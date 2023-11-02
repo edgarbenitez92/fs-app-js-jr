@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { CounterService } from 'src/app/services/counter.service';
 
 @Component({
   selector: 'app-number-to-counter',
@@ -12,11 +13,17 @@ import { MatButtonModule } from '@angular/material/button';
 export class NumberToCounterComponent {
   @Input() numberToCounter: number = 0;
 
-  incrementCounter(): void {
-    console.log('incremented by: ', this.numberToCounter);
+  constructor(private counterService: CounterService) {}
+
+  incrementCounter(incrementBy: number): void {
+    console.log('incremented by: ', incrementBy);
+    const currentCounter = this.counterService.counter.value;
+    this.counterService.counter.next(currentCounter + incrementBy);
   }
 
-  decrementCounter(): void {
-    console.log('decremented by: ', this.numberToCounter);
+  decrementCounter(decrementBy: number): void {
+    console.log('decremented by: ', decrementBy);
+    const currentCounter = this.counterService.counter.value;
+    this.counterService.counter.next(currentCounter - decrementBy);
   }
 }
