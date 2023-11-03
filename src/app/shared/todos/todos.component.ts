@@ -16,19 +16,25 @@ export class TodosComponent {
       id: 1,
       description: 'Learn AWS',
       done: false,
-      targetDate: new Date(this.currentDate.getFullYear() + 2),
+      targetDate: new Date(
+        this.currentDate.setFullYear(this.currentDate.getFullYear() + 1)
+      ),
     },
     {
       id: 2,
       description: 'Learn Spring Boot Java',
       done: false,
-      targetDate: new Date(this.currentDate.getFullYear() + 11),
+      targetDate: new Date(
+        this.currentDate.setFullYear(this.currentDate.getFullYear() + 1)
+      ),
     },
     {
       id: 3,
       description: 'Learn English',
       done: false,
-      targetDate: new Date(this.currentDate.getFullYear() + 1),
+      targetDate: new Date(
+        this.currentDate.setFullYear(this.currentDate.getFullYear() + 1)
+      ),
     },
   ];
 
