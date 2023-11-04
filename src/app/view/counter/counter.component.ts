@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NumberToCounterComponent } from './number-to-counter/number-to-counter.component';
 import { NgFor } from '@angular/common';
-import { CounterService } from 'src/app/services/counter.service';
+import { CounterService } from 'src/app/core/services/counter.service';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({

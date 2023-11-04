@@ -1,7 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { CounterService } from 'src/app/services/counter.service';
+import { CounterService } from 'src/app/core/services/counter.service';
 
 @Component({
   selector: 'app-number-to-counter',
