@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-todos',
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, MatTableModule, MatIconModule],
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss'],
 })
@@ -23,7 +24,7 @@ export class TodosComponent {
     {
       id: 2,
       description: 'Learn Spring Boot Java',
-      done: false,
+      done: true,
       targetDate: new Date(
         this.currentDate.setFullYear(this.currentDate.getFullYear() + 1)
       ),
