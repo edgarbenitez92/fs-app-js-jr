@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionService } from 'src/app/core/services/session.service';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ import { SessionService } from 'src/app/core/services/session.service';
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent {
   private router = inject(Router);
@@ -31,7 +33,6 @@ export class LoginComponent {
   formLogin: FormGroup<LoginForm>;
 
   constructor() {
-
     this.formLogin = new FormGroup<LoginForm>({
       user: new FormControl('', { validators: [Validators.required] }),
       password: new FormControl(null, { validators: [Validators.required] }),
@@ -45,7 +46,7 @@ export class LoginComponent {
   doLogin(form: FormGroup<LoginForm>) {
     if (form.valid) {
       const user = form.value.user;
-      
+
       this.sessionService.setToken(user!);
       this.router.navigate([`./todo/welcome/${user}`]);
     }
