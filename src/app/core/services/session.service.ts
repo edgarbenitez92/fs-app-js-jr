@@ -14,7 +14,7 @@ export class SessionService {
   }
 
   getToken(): string {
-    return JSON.stringify(sessionStorage.getItem(this.TOKEN));
+    return sessionStorage.getItem(this.TOKEN) || '';
   }
 
   destroySession() {

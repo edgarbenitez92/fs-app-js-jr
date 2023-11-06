@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpErrorResponse } from '@angular/common/http';
+import { TodoService } from 'src/app/core/services/todo.service';
+import { SessionService } from 'src/app/core/services/session.service';
 
 @Component({
   selector: 'app-todos',
@@ -11,6 +14,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent {
+  private todoService = inject(TodoService);
+  private sessionService = inject(SessionService);
+
   currentDate: Date = new Date();
   todos: TodoList[] = [
     {
@@ -45,10 +51,19 @@ export class TodosComponent {
 
   ngOnInit(): void {
     this.buildDataSourceTable();
+    this.getTodosByUser();
   }
 
   buildDataSourceTable(): void {
     this.dataSourceTodo = new MatTableDataSource<TodoList>(this.todos);
+  }
+
+  getTodosByUser() {
+    const user = this.sessionService.getToken();
+    this.todoService.getTodosByUser(user).subscribe({
+      next: (resp) => console.log('resp: ', resp),
+      error: (err: HttpErrorResponse) => console.error('Error: ', err),
+    });
   }
 }
 
