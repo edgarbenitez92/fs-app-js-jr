@@ -1,7 +1,19 @@
-.success-icon {
-  color: green;
-}
+.todos-container {
+  margin-top: 20px;
 
-.denied-icon {
-  color: red;
+  .todo-table {
+    .success-icon {
+      color: green;
+    }
+
+    .denied-icon {
+      color: red;
+    }
+  }
+
+
+  .no-data-title {
+    margin-top: 20px;
+    text-align: center;
+  }
 }
