@@ -4,12 +4,12 @@
   </div>
 
   <form [formGroup]="formLogin" (ngSubmit)="doLogin(formLogin)" class="auth-container">
-    <mat-form-field color="warn" class="form-field-login">
+    <mat-form-field color="accent" class="form-field-login">
       <mat-label>User</mat-label>
       <input matInput formControlName="user" type="text" autocomplete="off">
     </mat-form-field>
 
-    <mat-form-field color="warn" class="form-field-login">
+    <mat-form-field color="accent" class="form-field-login">
       <mat-label>Password</mat-label>
       <input matInput formControlName="password" type="password" autocomplete="off">
     </mat-form-field>
