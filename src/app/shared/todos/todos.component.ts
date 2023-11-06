@@ -18,50 +18,22 @@ export class TodosComponent {
   private sessionService = inject(SessionService);
 
   currentDate: Date = new Date();
-  todos: TodoList[] = [
-    {
-      id: 1,
-      description: 'Learn AWS',
-      done: false,
-      targetDate: new Date(
-        this.currentDate.setFullYear(this.currentDate.getFullYear() + 1)
-      ),
-    },
-    {
-      id: 2,
-      description: 'Learn Spring Boot Java',
-      done: true,
-      targetDate: new Date(
-        this.currentDate.setFullYear(this.currentDate.getFullYear() + 1)
-      ),
-    },
-    {
-      id: 3,
-      description: 'Learn English',
-      done: false,
-      targetDate: new Date(
-        this.currentDate.setFullYear(this.currentDate.getFullYear() + 1)
-      ),
-    },
-  ];
-
   dataSourceTodo: MatTableDataSource<TodoList> =
     new MatTableDataSource<TodoList>();
   displayedColumnsTodos: string[] = ['id', 'description', 'done', 'targetDate'];
 
   ngOnInit(): void {
-    this.buildDataSourceTable();
     this.getTodosByUser();
   }
 
-  buildDataSourceTable(): void {
-    this.dataSourceTodo = new MatTableDataSource<TodoList>(this.todos);
+  buildDataSourceTable(todos: TodoList[]): void {
+    this.dataSourceTodo = new MatTableDataSource<TodoList>(todos);
   }
 
   getTodosByUser() {
     const user = this.sessionService.getToken();
     this.todoService.getTodosByUser(user).subscribe({
-      next: (resp) => console.log('resp: ', resp),
+      next: (todos) => this.buildDataSourceTable(todos),
       error: (err: HttpErrorResponse) => console.error('Error: ', err),
     });
   }
