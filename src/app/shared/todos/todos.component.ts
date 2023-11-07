@@ -7,6 +7,7 @@ import { TodoService } from 'src/app/core/services/todo.service';
 import { SessionService } from 'src/app/core/services/session.service';
 import { MatButtonModule } from '@angular/material/button';
 import { Todo } from 'src/app/core/interfaces/todo.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-todos',
@@ -18,8 +19,9 @@ import { Todo } from 'src/app/core/interfaces/todo.interface';
 export class TodosComponent {
   private todoService = inject(TodoService);
   private sessionService = inject(SessionService);
-  user = this.sessionService.getToken();
+  private router = inject(Router);
 
+  user = this.sessionService.getToken();
   currentDate: Date = new Date();
   dataSourceTodo: MatTableDataSource<Todo> = new MatTableDataSource<Todo>();
   displayedColumnsTodos: string[] = [
@@ -51,5 +53,12 @@ export class TodosComponent {
       next: (todos: Todo[]) =>
         (this.dataSourceTodo = new MatTableDataSource<Todo>(todos)),
     });
+  }
+
+  updateTodo(event: Event, todo: Todo) {
+    event.stopPropagation();
+    this.router.events.subscribe(console.log);
+    this.router.navigate([`../todo/${todo.id}`]);
+    console.log('todo: ', todo);
   }
 }

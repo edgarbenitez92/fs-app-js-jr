@@ -9,6 +9,17 @@
     .denied-icon {
       color: red;
     }
+
+    .btn-actions-container {
+      display: flex;
+      justify-content: space-around;
+
+      .btn-edit-todo {
+        background-color: green;
+        color: white;
+        margin-left: 10px;
+      }
+    }
   }
 
 

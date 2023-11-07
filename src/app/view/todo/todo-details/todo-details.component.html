@@ -1,0 +1,16 @@
+<div class="todo-container">
+  <div class="title-app">
+    <h2>TODO's</h2>
+  </div>
+
+  <form [formGroup]="formTodo" (ngSubmit)="updateTodo(formTodo)" class="todo-detail-container">
+    <mat-form-field color="accent" class="form-field-todo">
+      <mat-label>User</mat-label>
+      <input matInput formControlName="id" type="text" autocomplete="off">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="btn-submit" type="submit">
+      LOGIN
+    </button>
+  </form>
+</div>
