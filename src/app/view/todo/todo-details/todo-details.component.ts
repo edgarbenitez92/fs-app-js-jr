@@ -73,12 +73,10 @@ export class TodoDetailsComponent {
       targetDate: formTodo.value.targetDate,
     };
 
-    this.todoService
-      .updateTodo(todoRequest, todoRequest.id, this.user)
-      .subscribe({
-        next: () => this.navigateToWelcome(),
-        error: (err: HttpErrorResponse) => console.error('Error: ', err),
-      });
+    this.todoService.updateTodo(todoRequest, this.user).subscribe({
+      next: () => this.navigateToWelcome(),
+      error: (err: HttpErrorResponse) => console.error('Error: ', err),
+    });
   }
 
   navigateToWelcome(): void {

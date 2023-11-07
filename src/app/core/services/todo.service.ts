@@ -48,10 +48,10 @@ export class TodoService {
     );
   }
 
-  updateTodo(todo: Todo, id: number, user: string): Observable<Todo> {
+  updateTodo(todo: Todo, user: string): Observable<Todo> {
     const headers = { 'Content-Type': 'application/json' };
     return this.http.put<Todo>(
-      `${environment.base_url}/users/${user}/todos/${id}`,
+      `${environment.base_url}/users/${user}/todo-update`,
       todo,
       {
         headers,
