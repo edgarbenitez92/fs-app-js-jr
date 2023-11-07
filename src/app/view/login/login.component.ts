@@ -48,7 +48,7 @@ export class LoginComponent {
       const user = form.value.user;
 
       this.sessionService.setToken(user!);
-      this.router.navigate([`./todo/welcome/${user}`]);
+      this.router.navigate(['todo/welcome']);
     }
   }
 }

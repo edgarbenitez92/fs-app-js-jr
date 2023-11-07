@@ -20,6 +20,7 @@ export class TodosComponent {
   private todoService = inject(TodoService);
   private sessionService = inject(SessionService);
   private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
 
   user = this.sessionService.getToken();
   currentDate: Date = new Date();
@@ -57,8 +58,6 @@ export class TodosComponent {
 
   updateTodo(event: Event, todo: Todo) {
     event.stopPropagation();
-    this.router.events.subscribe(console.log);
-    this.router.navigate([`../todo/${todo.id}`]);
-    console.log('todo: ', todo);
+    this.router.navigate([todo.id], { relativeTo: this.activatedRoute.parent });
   }
 }

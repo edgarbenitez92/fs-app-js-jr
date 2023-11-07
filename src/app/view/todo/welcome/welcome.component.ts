@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { TodosComponent } from 'src/app/shared/todos/todos.component';
 import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
+import { SessionService } from 'src/app/core/services/session.service';
 
 @Component({
   selector: 'app-welcome',
@@ -12,16 +12,6 @@ import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
   styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent {
-  private activatedRoute = inject(ActivatedRoute);
-  user!: string;
-
-  ngOnInit(): void {
-    this.getUserNameByUrl();
-  }
-
-  getUserNameByUrl(): void {
-    this.activatedRoute.url.subscribe((url: UrlSegment[]) => {
-      this.user = url[1].path;
-    });
-  }
+  private sessionService = inject(SessionService);
+  user: string = this.sessionService.getToken();
 }

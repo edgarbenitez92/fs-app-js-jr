@@ -28,7 +28,17 @@
       border: 1px solid black;
       font-weight: bold;
       color: white;
+      background-color: green;
+    }
+
+    .btn-cancel {
+      padding: 5px;
+      margin-top: 5px;
+      border-radius: 20px;
+      border: 1px solid black;
+      font-weight: bold;
+      color: white;
+      background-color: red;
     }
   }
-
 }
