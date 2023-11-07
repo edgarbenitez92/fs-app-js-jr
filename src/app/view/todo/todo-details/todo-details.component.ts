@@ -41,6 +41,7 @@ export class TodoDetailsComponent {
 
   formTodo: FormGroup<TodoForm>;
   user = this.sessionService.getToken();
+  todoSelected!: Todo;
 
   constructor() {
     this.formTodo = this.todoService.buildTodoForm();
@@ -60,11 +61,25 @@ export class TodoDetailsComponent {
   }
 
   setTodoDataForm(todo: Todo) {
+    this.todoSelected = todo;
     this.descriptionField?.setValue(todo.description);
     this.targetDateField?.setValue(todo.targetDate);
   }
 
-  updateTodo(formTodo: FormGroup) {}
+  updateTodo(formTodo: FormGroup<TodoForm>) {
+    const todoRequest: Todo = {
+      ...this.todoSelected,
+      description: formTodo.value.description,
+      targetDate: formTodo.value.targetDate,
+    };
+
+    this.todoService
+      .updateTodo(todoRequest, todoRequest.id, this.user)
+      .subscribe({
+        next: () => this.navigateToWelcome(),
+        error: (err: HttpErrorResponse) => console.error('Error: ', err),
+      });
+  }
 
   navigateToWelcome(): void {
     this.router.navigate(['welcome'], {

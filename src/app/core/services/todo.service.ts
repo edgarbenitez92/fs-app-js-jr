@@ -34,7 +34,7 @@ export class TodoService {
   buildTodoForm(): FormGroup<TodoForm> {
     return new FormGroup<TodoForm>({
       description: new FormControl('', { validators: [Validators.required] }),
-      targetDate: new FormControl('', { validators: [Validators.required] }),
+      targetDate: new FormControl(null, { validators: [Validators.required] }),
     });
   }
 
@@ -42,6 +42,17 @@ export class TodoService {
     const headers = { 'Content-Type': 'application/json' };
     return this.http.get<Todo>(
       `${environment.base_url}/users/${user}/todos/${id}`,
+      {
+        headers,
+      }
+    );
+  }
+
+  updateTodo(todo: Todo, id: number, user: string): Observable<Todo> {
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.put<Todo>(
+      `${environment.base_url}/users/${user}/todos/${id}`,
+      todo,
       {
         headers,
       }
