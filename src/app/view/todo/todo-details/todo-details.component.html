@@ -3,7 +3,7 @@
     <h2>TODO details</h2>
   </div>
 
-  <form [formGroup]="formTodo" (ngSubmit)="updateTodo(formTodo)" class="todo-detail-container">
+  <form [formGroup]="formTodo" (ngSubmit)="executeSubmit(formTodo)" class="todo-detail-container">
     <mat-form-field color="accent" class="form-field-todo">
       <mat-label>Description</mat-label>
       <input matInput formControlName="description" type="text" autocomplete="off">
@@ -17,8 +17,8 @@
       </mat-datepicker>
     </mat-form-field>
 
-    <button mat-raised-button class="btn-submit" type="submit">
-      GUARDAR
+    <button mat-raised-button class="btn-submit" type="submit" [disabled]="formTodo.invalid">
+      {{ todoId == 0 ? 'CREAR' : 'ACTUALIZAR' }}
     </button>
 
     <button mat-raised-button class="btn-cancel" type="button" (click)="navigateToWelcome()">

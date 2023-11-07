@@ -48,10 +48,20 @@ export class TodoService {
     );
   }
 
+  createTodo(todo: Todo, user: string): Observable<Todo> {
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.post<Todo>(
+      `${environment.base_url}/users/${user}/create-todo`,
+      todo,
+      {
+        headers,
+      }
+    );
+  }
   updateTodo(todo: Todo, user: string): Observable<Todo> {
     const headers = { 'Content-Type': 'application/json' };
     return this.http.put<Todo>(
-      `${environment.base_url}/users/${user}/todo-update`,
+      `${environment.base_url}/users/${user}/update-todo`,
       todo,
       {
         headers,

@@ -2,6 +2,10 @@
   <h2>Welcome {{ user | titlecase }}, <br> here is your list of TODO</h2>
 </div>
 
+<div class="btn-add-todo-container">
+  <button mat-raised-button class="btn-add-todo" (click)="navigateToAddNewTodo()">Add new TODO</button>
+</div>
+
 <div class="todos-container">
   <app-todos></app-todos>
 </div>

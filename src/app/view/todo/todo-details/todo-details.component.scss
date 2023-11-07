@@ -31,6 +31,12 @@
       background-color: green;
       margin-top: 10px;
       margin-bottom: 5px;
+
+      &:disabled {
+        background-color: #b7b7b7;
+        color: #595b62;
+        border-color: #fff;
+      }
     }
 
     .btn-cancel {

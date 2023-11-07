@@ -2,3 +2,13 @@
   text-align: center;
   font-weight: bold;
 }
+
+.btn-add-todo-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  .btn-add-todo {
+    background-color: #2cbd74;
+  }
+}

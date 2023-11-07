@@ -41,7 +41,8 @@ export class TodoDetailsComponent {
 
   formTodo: FormGroup<TodoForm>;
   user = this.sessionService.getToken();
-  todoSelected!: Todo;
+  todoSelected: Todo = new Todo();
+  todoId: number = 0;
 
   constructor() {
     this.formTodo = this.todoService.buildTodoForm();
@@ -49,7 +50,8 @@ export class TodoDetailsComponent {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(({ id }) => {
-      this.getTodoById(id, this.user);
+      this.todoId = id;
+      if (id && id != 0) this.getTodoById(id, this.user);
     });
   }
 
@@ -66,14 +68,28 @@ export class TodoDetailsComponent {
     this.targetDateField?.setValue(todo.targetDate);
   }
 
-  updateTodo(formTodo: FormGroup<TodoForm>) {
+  executeSubmit(formTodo: FormGroup<TodoForm>) {
     const todoRequest: Todo = {
       ...this.todoSelected,
       description: formTodo.value.description,
       targetDate: formTodo.value.targetDate,
+      user: this.user,
     };
 
-    this.todoService.updateTodo(todoRequest, this.user).subscribe({
+    if (todoRequest.id == 0) return this.createTodo(todoRequest);
+
+    return this.updateTodo(todoRequest);
+  }
+
+  createTodo(todo: Todo) {
+    this.todoService.createTodo(todo, this.user).subscribe({
+      next: () => this.navigateToWelcome(),
+      error: (err: HttpErrorResponse) => console.error('Error: ', err),
+    });
+  }
+
+  updateTodo(todo: Todo) {
+    this.todoService.updateTodo(todo, this.user).subscribe({
       next: () => this.navigateToWelcome(),
       error: (err: HttpErrorResponse) => console.error('Error: ', err),
     });
