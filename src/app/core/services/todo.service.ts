@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, switchMap } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
+import { TodoForm } from '../interfaces/todoForm.interface';
+import { Todo } from '../interfaces/todo.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -9,11 +12,14 @@ import { environment } from 'src/app/environments/environment';
 export class TodoService {
   constructor(private http: HttpClient) {}
 
-  getTodosByUser(user: string): Observable<any> {
+  getTodosByUser(user: string): Observable<Todo[]> {
     const headers = { 'Content-Type': 'application/json' };
-    return this.http.get(`${environment.base_url}/users/${user}/todos`, {
-      headers,
-    });
+    return this.http.get<Todo[]>(
+      `${environment.base_url}/users/${user}/todos`,
+      {
+        headers,
+      }
+    );
   }
 
   deleteTodoById(id: number, user: string): Observable<any> {
@@ -23,5 +29,22 @@ export class TodoService {
         headers,
       })
       .pipe(switchMap(() => this.getTodosByUser(user)));
+  }
+
+  buildTodoForm(): FormGroup<TodoForm> {
+    return new FormGroup<TodoForm>({
+      description: new FormControl('', { validators: [Validators.required] }),
+      targetDate: new FormControl('', { validators: [Validators.required] }),
+    });
+  }
+
+  getTodoById(id: number, user: string): Observable<Todo> {
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.get<Todo>(
+      `${environment.base_url}/users/${user}/todos/${id}`,
+      {
+        headers,
+      }
+    );
   }
 }

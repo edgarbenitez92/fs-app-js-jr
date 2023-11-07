@@ -1,12 +1,20 @@
 <div class="todo-container">
   <div class="title-app">
-    <h2>TODO's</h2>
+    <h2>TODO details</h2>
   </div>
 
   <form [formGroup]="formTodo" (ngSubmit)="updateTodo(formTodo)" class="todo-detail-container">
     <mat-form-field color="accent" class="form-field-todo">
-      <mat-label>User</mat-label>
-      <input matInput formControlName="id" type="text" autocomplete="off">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" type="text" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field color="accent" class="form-field-todo">
+      <mat-label>Select target date</mat-label>
+      <input matInput formControlName="targetDate" [matDatepicker]="datepicker">
+      <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker>
+      </mat-datepicker>
     </mat-form-field>
 
     <button mat-raised-button class="btn-submit" type="submit">

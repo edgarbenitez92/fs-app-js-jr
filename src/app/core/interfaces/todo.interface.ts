@@ -3,4 +3,5 @@ export interface Todo {
   description: string;
   done: boolean;
   targetDate: Date;
+  user: string;
 }
