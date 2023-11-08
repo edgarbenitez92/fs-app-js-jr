@@ -18,7 +18,7 @@ export class WelcomeComponent {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
 
-  user: string = this.sessionService.getToken();
+  user: string = this.sessionService.getUserName();
 
   navigateToAddNewTodo(): void {
     this.router.navigate([0], { relativeTo: this.activatedRoute.parent });

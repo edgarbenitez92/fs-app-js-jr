@@ -3,15 +3,11 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SessionService } from 'src/app/core/services/session.service';
 import { ViewEncapsulation } from '@angular/core';
+import { LoginForm } from 'src/app/core/interfaces/loginForm.interface';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -28,15 +24,12 @@ import { ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent {
-  private router = inject(Router);
+  private authService = inject(AuthService);
   private sessionService = inject(SessionService);
   formLogin: FormGroup<LoginForm>;
 
   constructor() {
-    this.formLogin = new FormGroup<LoginForm>({
-      user: new FormControl('', { validators: [Validators.required] }),
-      password: new FormControl(null, { validators: [Validators.required] }),
-    });
+    this.formLogin = this.authService.createLoginForm();
   }
 
   ngOnInit(): void {
@@ -46,14 +39,8 @@ export class LoginComponent {
   doLogin(form: FormGroup<LoginForm>) {
     if (form.valid) {
       const user = form.value.user;
-
-      this.sessionService.setToken(user!);
-      this.router.navigate(['todo/welcome']);
+      const password = form.value.password;
+      this.authService.authenticate(user, password).subscribe();
     }
   }
-}
-
-interface LoginForm {
-  user: FormControl<string | null>;
-  password: FormControl<number | null>;
 }

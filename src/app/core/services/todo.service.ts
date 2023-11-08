@@ -13,21 +13,12 @@ export class TodoService {
   constructor(private http: HttpClient) {}
 
   getTodosByUser(user: string): Observable<Todo[]> {
-    const headers = { 'Content-Type': 'application/json' };
-    return this.http.get<Todo[]>(
-      `${environment.base_url}/users/${user}/todos`,
-      {
-        headers,
-      }
-    );
+    return this.http.get<Todo[]>(`${environment.base_url}/users/${user}/todos`);
   }
 
   deleteTodoById(id: number, user: string): Observable<any> {
-    const headers = { 'Content-Type': 'application/json' };
     return this.http
-      .delete(`${environment.base_url}/users/${user}/todos/${id}/delete-todo`, {
-        headers,
-      })
+      .delete(`${environment.base_url}/users/${user}/todos/${id}/delete-todo`)
       .pipe(switchMap(() => this.getTodosByUser(user)));
   }
 
@@ -39,33 +30,22 @@ export class TodoService {
   }
 
   getTodoById(id: number, user: string): Observable<Todo> {
-    const headers = { 'Content-Type': 'application/json' };
     return this.http.get<Todo>(
-      `${environment.base_url}/users/${user}/todos/${id}`,
-      {
-        headers,
-      }
+      `${environment.base_url}/users/${user}/todos/${id}`
     );
   }
 
   createTodo(todo: Todo, user: string): Observable<Todo> {
-    const headers = { 'Content-Type': 'application/json' };
     return this.http.post<Todo>(
       `${environment.base_url}/users/${user}/create-todo`,
-      todo,
-      {
-        headers,
-      }
+      todo
     );
   }
+
   updateTodo(todo: Todo, user: string): Observable<Todo> {
-    const headers = { 'Content-Type': 'application/json' };
     return this.http.put<Todo>(
       `${environment.base_url}/users/${user}/update-todo`,
-      todo,
-      {
-        headers,
-      }
+      todo
     );
   }
 }

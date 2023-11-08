@@ -22,7 +22,7 @@ export class TodosComponent {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
 
-  user = this.sessionService.getToken();
+  user = this.sessionService.getUserName();
   currentDate: Date = new Date();
   dataSourceTodo: MatTableDataSource<Todo> = new MatTableDataSource<Todo>();
   displayedColumnsTodos: string[] = [

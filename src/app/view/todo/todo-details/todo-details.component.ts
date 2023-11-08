@@ -40,7 +40,7 @@ export class TodoDetailsComponent {
   private todoService = inject(TodoService);
 
   formTodo: FormGroup<TodoForm>;
-  user = this.sessionService.getToken();
+  user = this.sessionService.getUserName();
   todoSelected: Todo = new Todo();
   todoId: number = 0;
 
